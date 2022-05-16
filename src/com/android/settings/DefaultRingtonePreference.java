@@ -43,6 +43,11 @@ public class DefaultRingtonePreference extends RingtonePreference {
 
     @Override
     protected void onSaveRingtone(Uri ringtoneUri) {
+        if (ringtoneUri == null) {
+            setActualDefaultRingtoneUri(ringtoneUri);
+            return;
+        }
+
         RingtoneManager.setActualDefaultRingtoneUriForPhoneAccountHandle(mUserContext,
                 getRingtoneType(), ringtoneUri, getPhoneAccountHandle());
     }
